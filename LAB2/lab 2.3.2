@@ -1,1 +1,28 @@
+data = input().split()
 
+n = int(data[0])
+w = int(data[1])
+h = int(data[2])
+
+left = 0
+right = (w + h) * n
+result = right
+
+while left <= right:
+    mid = (left + right) // 2
+    
+    if mid == 0:
+        left = 1
+        continue
+    
+    in_row = mid // w
+    in_col = mid // h
+    total = in_row * in_col
+    
+    if total >= n:
+        result = mid
+        right = mid - 1
+    else:
+        left = mid + 1
+
+print(result)
