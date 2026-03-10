@@ -4,9 +4,12 @@ n = int(data[0])
 w = int(data[1])
 h = int(data[2])
 
-left = 0
-right = (w + h) * n
-result = right
+if w > h:
+    left = w
+    right = w * n
+else:
+    left = h
+    right = h * n
 
 while left <= right:
     mid = (left + right) // 2
