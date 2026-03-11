@@ -1,0 +1,46 @@
+import unittest
+
+def solve(n, w, h):
+    if w > h:
+        left = w
+        right = w * n
+    else:
+        left = h
+        right = h * n
+
+    iterations = 0
+    result = right
+
+    while left <= right:
+        iterations += 1
+        mid = (left + right) // 2
+    
+        if mid == 0:
+            left = 1
+            continue
+    
+        in_row = mid // w
+        in_col = mid // h
+        total = in_row * in_col
+    
+        if total >= n:
+            result = mid
+            right = mid - 1
+        else:
+            left = mid + 1
+
+    return result
+
+class TestExamples(unittest.TestCase):
+    
+    def test_example_1(self):
+        self.assertEqual(solve(2, 1000000000, 999999999), 1999999998)
+        
+    def test_example_2(self):
+        self.assertEqual(solve(10, 2, 3), 9)
+
+    def test_example_3(self):
+        self.assertEqual(solve(4, 1, 1), 2)
+
+if __name__ == '__main__':
+    unittest.main()
